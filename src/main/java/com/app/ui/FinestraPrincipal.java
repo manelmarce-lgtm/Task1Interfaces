@@ -4,6 +4,8 @@
  */
 package com.app.ui;
 
+import java.util.ResourceBundle;
+
 /**
  *
  * @author manue
@@ -11,12 +13,19 @@ package com.app.ui;
 public class FinestraPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FinestraPrincipal.class.getName());
-
+    private ResourceBundle bundle;
     /**
      * Creates new form FinestraPrincipal
      */
     public FinestraPrincipal() {
         initComponents();
+        
+        try {
+            bundle = ResourceBundle.getBundle("Bundle_ca");
+            setTitle("Titol");
+        } catch (Exception e) {
+            setTitle("Gestió Lloguer de Videojocs");
+        }
     }
 
     /**
@@ -28,21 +37,157 @@ public class FinestraPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jPanel1 = new javax.swing.JPanel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        jScrollPaneFinPrincipal = new javax.swing.JScrollPane();
+        jTableFinPrincipal = new javax.swing.JTable();
+        jLabelTotalLloguers = new javax.swing.JLabel();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenuLLoguer = new javax.swing.JMenu();
+        jMenuRegistrar = new javax.swing.JMenuItem();
+        jMenuTornar = new javax.swing.JMenuItem();
+        jMenuUsuari = new javax.swing.JMenu();
+        jMenuCrearUsuari = new javax.swing.JMenuItem();
+        jMenuBorrarUsuari = new javax.swing.JMenuItem();
+        jMenuJoc = new javax.swing.JMenu();
+        jMenuCrearJoc = new javax.swing.JMenuItem();
+        jMenuBorrarJoc = new javax.swing.JMenuItem();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jMenu7.setText("File");
+        jMenuBar2.add(jMenu7);
+
+        jMenu8.setText("Edit");
+        jMenuBar2.add(jMenu8);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTableFinPrincipal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Núm. registre", "Títol del joc", "Usuari que l'ha llogat", "Plataforma", "Data d'inici", "Data de tornada", "Gènere"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPaneFinPrincipal.setViewportView(jTableFinPrincipal);
+
+        jLabelTotalLloguers.setText("Total de lloguers: 0");
+
+        jMenuLLoguer.setText("LLoguer");
+
+        jMenuRegistrar.setText("Registrar");
+        jMenuRegistrar.addActionListener(this::jMenuRegistrarActionPerformed);
+        jMenuLLoguer.add(jMenuRegistrar);
+
+        jMenuTornar.setText("Tornar");
+        jMenuTornar.addActionListener(this::jMenuTornarActionPerformed);
+        jMenuLLoguer.add(jMenuTornar);
+
+        jMenuBar.add(jMenuLLoguer);
+
+        jMenuUsuari.setText("Usuari");
+
+        jMenuCrearUsuari.setText("Crear");
+        jMenuCrearUsuari.addActionListener(this::jMenuCrearUsuariActionPerformed);
+        jMenuUsuari.add(jMenuCrearUsuari);
+
+        jMenuBorrarUsuari.setText("Borrar");
+        jMenuBorrarUsuari.addActionListener(this::jMenuBorrarUsuariActionPerformed);
+        jMenuUsuari.add(jMenuBorrarUsuari);
+
+        jMenuBar.add(jMenuUsuari);
+
+        jMenuJoc.setText("Joc");
+
+        jMenuCrearJoc.setText("Crear");
+        jMenuCrearJoc.addActionListener(this::jMenuCrearJocActionPerformed);
+        jMenuJoc.add(jMenuCrearJoc);
+
+        jMenuBorrarJoc.setText("Borrar");
+        jMenuBorrarJoc.addActionListener(this::jMenuBorrarJocActionPerformed);
+        jMenuJoc.add(jMenuBorrarJoc);
+
+        jMenuBar.add(jMenuJoc);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneFinPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTotalLloguers))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPaneFinPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(jLabelTotalLloguers)
+                .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuCrearJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCrearJocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuCrearJocActionPerformed
+
+    private void jMenuBorrarUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuBorrarUsuariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuBorrarUsuariActionPerformed
+
+    private void jMenuRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRegistrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuRegistrarActionPerformed
+
+    private void jMenuTornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTornarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuTornarActionPerformed
+
+    private void jMenuCrearUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCrearUsuariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuCrearUsuariActionPerformed
+
+    private void jMenuBorrarJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuBorrarJocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuBorrarJocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +215,25 @@ public class FinestraPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabelTotalLloguers;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuBorrarJoc;
+    private javax.swing.JMenuItem jMenuBorrarUsuari;
+    private javax.swing.JMenuItem jMenuCrearJoc;
+    private javax.swing.JMenuItem jMenuCrearUsuari;
+    private javax.swing.JMenu jMenuJoc;
+    private javax.swing.JMenu jMenuLLoguer;
+    private javax.swing.JMenuItem jMenuRegistrar;
+    private javax.swing.JMenuItem jMenuTornar;
+    private javax.swing.JMenu jMenuUsuari;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPaneFinPrincipal;
+    private javax.swing.JTable jTableFinPrincipal;
     // End of variables declaration//GEN-END:variables
 }

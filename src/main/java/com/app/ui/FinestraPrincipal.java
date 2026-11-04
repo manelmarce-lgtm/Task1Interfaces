@@ -6,6 +6,7 @@ package com.app.ui;
 
 import java.util.ResourceBundle;
 
+
 /**
  *
  * @author manue
@@ -19,7 +20,7 @@ public class FinestraPrincipal extends javax.swing.JFrame {
      */
     public FinestraPrincipal() {
         initComponents();
-        
+        actualitzarTaula();
         try {
             bundle = ResourceBundle.getBundle("Bundle_ca");
             setTitle("Titol");
@@ -27,7 +28,25 @@ public class FinestraPrincipal extends javax.swing.JFrame {
             setTitle("Gestió Lloguer de Videojocs");
         }
     }
-
+    //Metode per aplicar el color de si hi ha o no stock
+    public void actualitzarTaula(){
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTableFinPrincipal.getModel();
+        model.setRowCount(0);
+        
+        //AFEGIR cada lloger
+        for(com.app.model.Lloguer ll: com.app.model.GestorLloguers.getInstance().getLloguers()){
+            model.addRow(new Object[]{
+            ll.getNumRegistre(),
+            ll.getVideojoc().getTitol(),
+            ll.getUsuari().getNom(),
+            ll.getPlataforma(),
+            ll.getDataInici(),
+            ll.getDataPrevista(),
+            ll.getVideojoc().getGenere()
+          });
+        }
+        jLabelTotalLloguers.setText("Total de lloguers: " + model.getRowCount());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -167,50 +186,57 @@ public class FinestraPrincipal extends javax.swing.JFrame {
 
     private void jMenuCrearJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCrearJocActionPerformed
         // TODO add your handling code here:
+        new FormCrearJoc(this,true).setVisible(true);
     }//GEN-LAST:event_jMenuCrearJocActionPerformed
 
     private void jMenuBorrarUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuBorrarUsuariActionPerformed
         // TODO add your handling code here:
+        var usuaris = com.app.model.GestorLloguers.getInstance().getUsuaris();
+        if(usuaris.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "No hi ha cap usuari que esborrar.");
+            return;
+        }
+        Object seleccio = javax.swing.JOptionPane.showInputDialog(this, "Selecciona l'usuari que vols borrar:", "Borrar Usuari", javax.swing.JOptionPane.QUESTION_MESSAGE, null, usuaris.toArray(),null);
+        if(seleccio != null){
+            usuaris.remove(seleccio);
+            javax.swing.JOptionPane.showMessageDialog(this,"Usuari esborrat!!");
+        }
     }//GEN-LAST:event_jMenuBorrarUsuariActionPerformed
 
     private void jMenuRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRegistrarActionPerformed
         // TODO add your handling code here:
+        new FormRegistrarLloguer(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuRegistrarActionPerformed
 
     private void jMenuTornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTornarActionPerformed
         // TODO add your handling code here:
+        new FormTornarLloguer(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuTornarActionPerformed
 
     private void jMenuCrearUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCrearUsuariActionPerformed
         // TODO add your handling code here:
+        new FormCrearUsuari(this,true).setVisible(true);
     }//GEN-LAST:event_jMenuCrearUsuariActionPerformed
 
     private void jMenuBorrarJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuBorrarJocActionPerformed
         // TODO add your handling code here:
+        var jocs = com.app.model.GestorLloguers.getInstance().getUsuaris();
+        if(jocs.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "No hi ha cap joc que esborrar.");
+            return;
+        }
+        Object seleccio = javax.swing.JOptionPane.showInputDialog(this, "Selecciona el joc que vols borrar:", "Borrar Usuari", javax.swing.JOptionPane.QUESTION_MESSAGE, null, jocs.toArray(),null);
+        if(seleccio != null){
+            jocs.remove(seleccio);
+            javax.swing.JOptionPane.showMessageDialog(this,"Usuari esborrat!!");
+        }
     }//GEN-LAST:event_jMenuBorrarJocActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(() -> new FinestraPrincipal().setVisible(true));
     }
 

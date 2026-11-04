@@ -15,7 +15,7 @@ public class FormCrearUsuari extends javax.swing.JFrame {
     /**
      * Creates new form FormCrearUsuari
      */
-    public FormCrearUsuari() {
+    public FormCrearUsuari(FinestraPrincipal aThis, boolean par) {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class FormCrearUsuari extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FormCrearUsuari().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new FormCrearUsuari(this, true).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

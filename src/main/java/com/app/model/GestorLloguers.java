@@ -38,4 +38,9 @@ public class GestorLloguers {
     public void afegirUsuari(Usuari usuari) {
         usuaris.add(usuari);
     }
+
+    public void afegirJoc(Videojoc nouJoc) {
+        jocs.add(nouJoc);
+    }
+    
 }

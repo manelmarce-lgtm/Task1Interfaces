@@ -183,7 +183,8 @@ public class FinestraPrincipal extends javax.swing.JFrame {
 
     private void jMenuCrearJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCrearJocActionPerformed
         // TODO add your handling code here:
-        new FormCrearJoc(this,true).setVisible(true);
+        FormCrearJoc form = new FormCrearJoc(this,true);
+        form.setVisible(true);
     }//GEN-LAST:event_jMenuCrearJocActionPerformed
 
     private void jMenuBorrarUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuBorrarUsuariActionPerformed

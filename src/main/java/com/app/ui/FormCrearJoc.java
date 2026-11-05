@@ -4,6 +4,9 @@
  */
 package com.app.ui;
 
+import com.app.model.GestorLloguers;
+import com.app.model.Videojoc;
+import javax.swing.JOptionPane;
 /**
  *
  * @author manue
@@ -83,9 +86,11 @@ public class FormCrearJoc extends javax.swing.JDialog {
 
         jButtonConf.setBackground(new java.awt.Color(51, 255, 102));
         jButtonConf.setText("Confirmar");
+        jButtonConf.addActionListener(this::jButtonConfActionPerformed);
 
         jButtonCan.setBackground(new java.awt.Color(153, 0, 0));
         jButtonCan.setText("Cancel·lar");
+        jButtonCan.addActionListener(this::jButtonCanActionPerformed);
 
         javax.swing.GroupLayout jPanelPlataformaLayout = new javax.swing.GroupLayout(jPanelPlataforma);
         jPanelPlataforma.setLayout(jPanelPlataformaLayout);
@@ -203,6 +208,36 @@ public class FormCrearJoc extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfActionPerformed
+        // TODO add your handling code here:
+        String nom = jTextFieldNom.getText().trim();
+        String genere = jComboBoxGen.getSelectedItem() != null ? jComboBoxGen.getSelectedItem().toString():"";
+        
+        //Validar nom
+        if(nom.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Nom OBLIGATORI","ERROR", JOptionPane.ERROR_MESSAGE);
+            return;   
+        }
+        //Validar plataforma
+        boolean triat = jCheckBoxPC.isSelected()||jCheckBoxSw2.isSelected()||jCheckBoxXB.isSelected()||jCheckBoxPS5.isSelected();
+        
+        if(!triat){
+            JOptionPane.showMessageDialog(this, "Sel·lecciona una Plataforma", "ERROR",JOptionPane.ERROR_MESSAGE);
+            return;    
+        }
+        
+        Videojoc nouJoc = new Videojoc(nom,genere);
+        GestorLloguers.getInstance().afegirJoc(nouJoc);
+        
+        JOptionPane.showMessageDialog(this, "Videojoc Afegit","ÈXIT",JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+    }//GEN-LAST:event_jButtonConfActionPerformed
+    
+    private void jButtonCanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCanActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonCanActionPerformed
 
     /**
      * @param args the command line arguments

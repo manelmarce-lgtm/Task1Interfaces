@@ -237,7 +237,7 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
 
         jLabel1.setText("Informació del joc");
 
-        jLabel2.setText("Génere:        Acció");
+        jLabel2.setText("Génere:       ");
 
         jLabel3.setText("Unitats disponibles:");
 

@@ -405,7 +405,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="G&#xe9;nere:        Acci&#xf3;"/>
+            <Property name="text" type="java.lang.String" value="G&#xe9;nere:       "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

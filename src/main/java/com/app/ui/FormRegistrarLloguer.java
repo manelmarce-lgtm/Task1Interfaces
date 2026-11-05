@@ -92,6 +92,8 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabelDadesLloguer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelDadesLloguer.setForeground(new java.awt.Color(102, 153, 255));
         jLabelDadesLloguer.setText("Dades del Lloguer");
 
         jLabelNumUsuari.setText("Num d'usuari:");
@@ -124,30 +126,30 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
         jPanelDadesLLoguerLayout.setHorizontalGroup(
             jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelDadesLloguer, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
-                                    .addComponent(jLabelNumUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jScrollPaneNumUsuari))
-                                .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
-                                    .addComponent(jComboBoxJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButtonSelectUsuari, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                        .addComponent(jButtonSelectJoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addComponent(jLabelUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelDataInici)
-                            .addComponent(jLabelDataT, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldDataT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                                .addComponent(jTextFieldDataInici, javax.swing.GroupLayout.Alignment.LEADING)))))
+                    .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
+                            .addComponent(jLabelNumUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jScrollPaneNumUsuari))
+                        .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
+                            .addComponent(jComboBoxJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButtonSelectUsuari, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                .addComponent(jButtonSelectJoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabelUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDataInici)
+                    .addComponent(jLabelDataT, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextFieldDataT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                        .addComponent(jTextFieldDataInici, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(23, 23, 23))
+            .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
+                .addComponent(jLabelDadesLloguer, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
                     .addContainerGap()
@@ -287,9 +289,11 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
                 .addGap(142, 142, 142))
         );
 
+        jButtonConfirmar.setBackground(new java.awt.Color(0, 255, 51));
         jButtonConfirmar.setText("Confirmar");
         jButtonConfirmar.addActionListener(this::jButtonConfirmarActionPerformed);
 
+        jButtonCancelar.setBackground(new java.awt.Color(153, 0, 0));
         jButtonCancelar.setText("Cancel·lar");
         jButtonCancelar.addActionListener(this::jButtonCancelarActionPerformed);
 

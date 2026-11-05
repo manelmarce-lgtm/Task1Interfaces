@@ -10,6 +10,32 @@
         <maven.compiler.release>27</maven.compiler.release>
         <exec.mainClass>com.app.tascainterfaces.TascaInterfaces</exec.mainClass>
     </properties>
-
-   
+    <build>
+    <resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.properties</include>
+            </includes>
+        </resource>
+    </resources>
+    <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>17</release> <!-- o tu versión de Java -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>com.app.ui.FinestraPrincipal</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+</build>
 </project>

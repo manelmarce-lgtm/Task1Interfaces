@@ -89,21 +89,25 @@ public class FormCanviarIdioma extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConActionPerformed
-        // TODO add your handling code here:
-        String seleccion = (String) jComboBoxIdiom.getSelectedItem();
-        
-        if ("Español".equals(seleccion)) {
-            java.util.Locale.setDefault(new java.util.Locale("es"));
-        } else {
-            java.util.Locale.setDefault(new java.util.Locale("ca"));
+        // Obtenir l'opció seleccionada al ComboBox
+        Object seleccioObj = jComboBoxIdiom.getSelectedItem();
+        if (seleccioObj == null) {
+            return;
         }
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Bundle", java.util.Locale.getDefault());
-        javax.swing.JOptionPane.showMessageDialog(this,
-            bundle.getString("idioma.exit"),
-            "i18n",
-            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        String seleccio = seleccioObj.toString().trim().toLowerCase();
+        System.out.println(">>> Idioma seleccionat al combo: " + seleccioObj.toString());
 
+        // Comprovar si és espanyol/castellà (admet tant 'y' com 'ñ')
+        if (seleccio.contains("espanyol") || seleccio.contains("español") || seleccio.contains("castellano") || seleccio.contains("castellà")) {
+            java.util.Locale.setDefault(new java.util.Locale("es", "ES"));
+            System.out.println(">>> Locale canviat a Castellà (es_ES)");
+        } else {
+            java.util.Locale.setDefault(new java.util.Locale("ca", "ES"));
+            System.out.println(">>> Locale canviat a Català (ca_ES)");
+        }
+
+        // Tancar el diàleg i tornar a la finestra principal
         this.dispose();
     }//GEN-LAST:event_jButtonConActionPerformed
 

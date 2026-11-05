@@ -19,14 +19,11 @@ public class FinestraPrincipal extends javax.swing.JFrame {
      * Creates new form FinestraPrincipal
      */
     public FinestraPrincipal() {
+        java.util.Locale.setDefault(new java.util.Locale("ca", "ES"));
+        
         initComponents();
         actualitzarTaula();
-        try {
-            bundle = ResourceBundle.getBundle("Bundle_ca");
-            setTitle("Titol");
-        } catch (Exception e) {
-            setTitle("Gestió Lloguer de Videojocs");
-        }
+        aplicarIdioma();
     }
     //Metode per aplicar el color de si hi ha o no stock
     public void actualitzarTaula() {
@@ -172,18 +169,21 @@ public class FinestraPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneFinPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTotalLloguers))
-                .addContainerGap(9, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelTotalLloguers))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPaneFinPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jScrollPaneFinPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(jLabelTotalLloguers)
                 .addGap(19, 19, 19))
         );
@@ -241,31 +241,57 @@ public class FinestraPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuBorrarJocActionPerformed
 
     private void jMenuCanviarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCanviarIdiomaActionPerformed
-        // TODO add your handling code here:
-        
-        FormCanviarIdioma form = new FormCanviarIdioma(this,true);
+        // Obrir la finestra de diàleg de manera modal (el codi s'atura fins que es tanca)
+        FormCanviarIdioma form = new FormCanviarIdioma(this, true);
         form.setVisible(true);
+
+        // Al tancar la finestra, forcem l'actualització dels textos
         aplicarIdioma();
     }//GEN-LAST:event_jMenuCanviarIdiomaActionPerformed
     private void aplicarIdioma(){
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Bundle", java.util.Locale.getDefault());
-    
+        // Netejar la memòria cau per evitar que Java reutilitzi traduccions antigues
+        java.util.ResourceBundle.clearCache();
+
+        java.util.Locale localeActual = java.util.Locale.getDefault();
+        System.out.println(">>> Aplicant idioma a la finestra principal: " + localeActual.getLanguage());
+
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("com.app.resources.Bundle", localeActual);
+
+        // 1. Títol de la finestra
+        setTitle(bundle.getString("main.titol"));
+
+        // 2. Menús superiors i submenús
         jMenuLLoguer.setText(bundle.getString("menu.lloguers"));
         jMenuRegistrar.setText(bundle.getString("menu.registrar_lloguer"));
         jMenuTornar.setText(bundle.getString("menu.tornar_lloguer"));
-    
+
         jMenuUsuari.setText(bundle.getString("menu.usuaris"));
         jMenuCrearUsuari.setText(bundle.getString("menu.crear_usuari"));
         jMenuBorrarUsuari.setText(bundle.getString("menu.borrar_usuari"));
-    
+
         jMenuJoc.setText(bundle.getString("menu.jocs"));
         jMenuCrearJoc.setText(bundle.getString("menu.crear_joc"));
-    
+
         jMenuOpcions.setText(bundle.getString("menu.opcions"));
         jMenuCanviarIdioma.setText(bundle.getString("menu.canviar_idioma"));
-    
-    
-    
+
+        // 3. Capçaleres de la taula
+        javax.swing.table.JTableHeader th = jTableLloguers.getTableHeader();
+        javax.swing.table.TableColumnModel tcm = th.getColumnModel();
+        if (tcm.getColumnCount() >= 7) {
+            tcm.getColumn(0).setHeaderValue(bundle.getString("taula.num_registre"));
+            tcm.getColumn(1).setHeaderValue(bundle.getString("taula.titol_joc"));
+            tcm.getColumn(2).setHeaderValue(bundle.getString("taula.usuari"));
+            tcm.getColumn(3).setHeaderValue(bundle.getString("taula.plataforma"));
+            tcm.getColumn(4).setHeaderValue(bundle.getString("taula.data_inici"));
+            tcm.getColumn(5).setHeaderValue(bundle.getString("taula.data_tornada"));
+            tcm.getColumn(6).setHeaderValue(bundle.getString("taula.genere"));
+            th.repaint();
+        }
+
+        // 4. Text del label inferior de total de lloguers
+        int total = com.app.model.GestorLloguers.getInstance().getLloguers().size();
+        jLabelTotalLloguers.setText(bundle.getString("label.total_lloguers") + ": " + total);
     }
     /**
      * @param args the command line arguments

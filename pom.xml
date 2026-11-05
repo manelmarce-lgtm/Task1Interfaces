@@ -11,12 +11,5 @@
         <exec.mainClass>com.app.tascainterfaces.TascaInterfaces</exec.mainClass>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.netbeans.validation</groupId>
-            <artifactId>ValidationAPI</artifactId>
-            <version>RELEASE180</version>
-        </dependency>
-    </dependencies>
-
+   
 </project>

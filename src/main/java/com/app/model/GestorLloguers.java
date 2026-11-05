@@ -18,7 +18,7 @@ public class GestorLloguers {
 
     private GestorLloguers() {
         usuaris.add(new Usuari("Prova", "Prova"));
-        jocs.add(new Videojoc("Prova","Prova"));
+        jocs.add(new Videojoc("Prova","Prova",0, 0, 0, 0));
     }
     
     public static GestorLloguers getInstance(){

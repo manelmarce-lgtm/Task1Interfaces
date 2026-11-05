@@ -33,7 +33,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelTel" min="-2" pref="69" max="-2" attributes="0"/>
                                   <Component id="jLabelDNI" min="-2" pref="69" max="-2" attributes="0"/>
-                                  <Component id="jLabelCognom1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCognom1" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -60,8 +60,8 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelNom" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
-                          <Component id="jLabelCognom2" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Component id="jLabelNom" min="-2" pref="76" max="-2" attributes="0"/>
+                          <Component id="jLabelCognom2" min="-2" pref="93" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -165,9 +165,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNom">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nom:"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNomActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldCog1">
       <Events>

@@ -80,38 +80,42 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabelNumUsuari" min="-2" pref="109" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPaneNumUsuari" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jComboBoxJoc" min="-2" pref="218" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButtonSelectUsuari" pref="137" max="32767" attributes="0"/>
-                                  <Component id="jButtonSelectJoc" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Component id="jLabelUsuari" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
-                      <Component id="jLabelJoc" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
-                      <Component id="jLabelDataInici" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelDataT" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jTextFieldDataT" alignment="0" pref="218" max="32767" attributes="0"/>
-                          <Component id="jTextFieldDataInici" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jLabelDadesLloguer" min="-2" pref="159" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jButtonSelectUsuari" min="-2" pref="137" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabelNumUsuari" min="-2" pref="109" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPaneNumUsuari" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabelUsuari" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                              <Component id="jLabelJoc" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                              <Component id="jLabelDataInici" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelDataT" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jTextFieldDataT" alignment="0" pref="218" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldDataInici" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jComboBoxJoc" min="-2" pref="218" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jButtonSelectJoc" pref="137" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -134,9 +138,9 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabelUsuari" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="jButtonSelectUsuari" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="jLabelJoc" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -217,11 +221,6 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Object&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonSelectJoc">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Seleccionar"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabelJoc">
           <Properties>
             <Property name="text" type="java.lang.String" value="Joc elegit:"/>
@@ -249,6 +248,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Seleccionar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSelectUsuariActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelDataInici">
           <Properties>
@@ -266,6 +268,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDataT">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonSelectJoc">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Seleccionar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSelectJocActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -415,22 +425,22 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PS5:    0"/>
+            <Property name="text" type="java.lang.String" value="PS5:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="XBOX:    0"/>
+            <Property name="text" type="java.lang.String" value="XBOX: "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PC:    0"/>
+            <Property name="text" type="java.lang.String" value="PC: "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="SWITCH  2:    0"/>
+            <Property name="text" type="java.lang.String" value="SWITCH  2: "/>
           </Properties>
         </Component>
       </SubComponents>

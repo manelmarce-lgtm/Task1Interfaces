@@ -10,21 +10,33 @@ package com.app.model;
  */
 public class Lloguer {
     private int numRegistre;
-  private Videojoc joc;
+    private Videojoc joc;
     private Usuari usuari;
     private String plataforma;
     private String dataInici;
     private String dataPrevista;
-    
-    public Lloguer(int numRegistre, Videojoc joc, Usuari usuari, String plataforma, String dataInici, String dataPrevista) {
+    private boolean retornat = false;
+
+    public Lloguer(int numRegistre, Videojoc joc, Usuari usuari, String plataforma, String dataInici, String dataPrevista, boolean retornat) {
         this.numRegistre = numRegistre;
         this.joc = joc;
         this.usuari = usuari;
         this.plataforma = plataforma;
         this.dataInici = dataInici;
         this.dataPrevista = dataPrevista;
+        this.retornat = false;
     }
 
+    public Videojoc getJoc() {
+        return joc;
+    }
+
+    public boolean isRetornat() {
+        return retornat;
+    }
+    public void setRetornat(boolean retornat) {
+        this.retornat = retornat;
+    }
     public int getNumRegistre() {
         return numRegistre;
     }
@@ -48,6 +60,7 @@ public class Lloguer {
     public String getDataPrevista() {
         return dataPrevista;
     }
-   
+
+    
     
 }  

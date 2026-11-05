@@ -121,7 +121,6 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
         jTextPaneNumUsuari = new javax.swing.JTextPane();
         jLabelUsuari = new javax.swing.JLabel();
         jComboBoxJoc = new javax.swing.JComboBox<>();
-        jButtonSelectJoc = new javax.swing.JButton();
         jLabelJoc = new javax.swing.JLabel();
         jComboBoxUsuari = new javax.swing.JComboBox<>();
         jButtonSelectUsuari = new javax.swing.JButton();
@@ -129,6 +128,7 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
         jTextFieldDataInici = new javax.swing.JTextField();
         jLabelDataT = new javax.swing.JLabel();
         jTextFieldDataT = new javax.swing.JTextField();
+        jButtonSelectJoc = new javax.swing.JButton();
         jPanelPlataforma = new javax.swing.JPanel();
         jLabelPlataforma = new javax.swing.JLabel();
         jRadioButtonPC = new javax.swing.JRadioButton();
@@ -162,14 +162,13 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
         jComboBoxJoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxJoc.addActionListener(this::jComboBoxJocActionPerformed);
 
-        jButtonSelectJoc.setText("Seleccionar");
-
         jLabelJoc.setText("Joc elegit:");
 
         jComboBoxUsuari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxUsuari.addActionListener(this::jComboBoxUsuariActionPerformed);
 
         jButtonSelectUsuari.setText("Seleccionar");
+        jButtonSelectUsuari.addActionListener(this::jButtonSelectUsuariActionPerformed);
 
         jLabelDataInici.setText("Data d'inici:");
 
@@ -177,35 +176,41 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
 
         jLabelDataT.setText("Data de tornada:");
 
+        jButtonSelectJoc.setText("Seleccionar");
+        jButtonSelectJoc.addActionListener(this::jButtonSelectJocActionPerformed);
+
         javax.swing.GroupLayout jPanelDadesLLoguerLayout = new javax.swing.GroupLayout(jPanelDadesLLoguer);
         jPanelDadesLLoguer.setLayout(jPanelDadesLLoguerLayout);
         jPanelDadesLLoguerLayout.setHorizontalGroup(
             jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
-                            .addComponent(jLabelNumUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPaneNumUsuari))
-                        .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
-                            .addComponent(jComboBoxJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButtonSelectUsuari, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                .addComponent(jButtonSelectJoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addComponent(jLabelUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDataInici)
-                    .addComponent(jLabelDataT, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextFieldDataT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                        .addComponent(jTextFieldDataInici, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(23, 23, 23))
-            .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
                 .addComponent(jLabelDadesLloguer, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadesLLoguerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonSelectUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadesLLoguerLayout.createSequentialGroup()
+                        .addComponent(jLabelNumUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPaneNumUsuari))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadesLLoguerLayout.createSequentialGroup()
+                        .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelUsuari, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelJoc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDataInici, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelDataT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextFieldDataT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                                .addComponent(jTextFieldDataInici, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
+                        .addComponent(jComboBoxJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSelectJoc, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
+                .addGap(23, 23, 23))
             .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
                     .addContainerGap()
@@ -223,9 +228,9 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
                     .addComponent(jLabelNumUsuari))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelUsuari)
-                .addGap(17, 17, 17)
+                .addGap(10, 10, 10)
                 .addComponent(jButtonSelectUsuari)
-                .addGap(21, 21, 21)
+                .addGap(28, 28, 28)
                 .addComponent(jLabelJoc)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -297,13 +302,13 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
 
         jLabel3.setText("Unitats disponibles:");
 
-        jLabel4.setText("PS5:    0");
+        jLabel4.setText("PS5:");
 
-        jLabel5.setText("XBOX:    0");
+        jLabel5.setText("XBOX: ");
 
-        jLabel6.setText("PC:    0");
+        jLabel6.setText("PC: ");
 
-        jLabel7.setText("SWITCH  2:    0");
+        jLabel7.setText("SWITCH  2: ");
 
         javax.swing.GroupLayout jPanelInfoJocLayout = new javax.swing.GroupLayout(jPanelInfoJoc);
         jPanelInfoJoc.setLayout(jPanelInfoJocLayout);
@@ -408,36 +413,128 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
     }//GEN-LAST:event_jRadioButtonSwitch2ActionPerformed
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
-        // TODO add your handling code here:
+
+        // 1. Obtenir les dades dels controls de la finestra
         com.app.model.Usuari usuari = (com.app.model.Usuari) jComboBoxUsuari.getSelectedItem();
         com.app.model.Videojoc joc = (com.app.model.Videojoc) jComboBoxJoc.getSelectedItem();
-        
-        //Obtenir sa plataforma
-        String plataforma = "PC";
-        if(jRadioButtonPS5.isSelected()) plataforma = "PS5";
-        else if (jRadioButtonXBOX.isSelected())plataforma = "Xbox";
-        else if (jRadioButtonSwitch2.isSelected()) plataforma = "Switch 2";
-        
-        if(usuari == null || joc == null){
-            javax.swing.JOptionPane.showMessageDialog(this, "Tria un usuari i un joc vàlid");
+        String dataInici = jTextFieldDataInici.getText().trim();
+        String dataPrevista = jTextFieldDataT.getText().trim();
+
+        // Determinar quina plataforma s'ha seleccionat als RadioButtons
+        String plataforma = "";
+        if (jRadioButtonPS5.isSelected()) {
+            plataforma = "PS5";
+        } else if (jRadioButtonXBOX.isSelected()) {
+            plataforma = "Xbox";
+        } else if (jRadioButtonPC.isSelected()) {
+            plataforma = "PC";
+        } else if (jRadioButtonSwitch2.isSelected()) {
+            plataforma = "Switch 2";
+        }
+
+        // 2. Validar que tots els camps obligatoris s'hagin emplenat
+        if (usuari == null || joc == null || plataforma.isEmpty() || dataInici.isEmpty() || dataPrevista.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Tots els camps són obligatoris. Assegura't de seleccionar un usuari, un joc, una plataforma i les dates.",
+                    "Atenció",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-        int numUsuari = Integer.parseInt(jTextPaneNumUsuari.getText());
-        String dInici = jTextFieldDataInici.getText();
-        String dTornada = jTextFieldDataT.getText();
-        
-        // Creació i afegir es lloguer
+
+        // 3. Validar format i posterioritat de la data de tornada respecte a la d'inici
+        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        java.time.LocalDate dataIniciParsed = null;
+        java.time.LocalDate dataTornadaParsed = null;
+
+        try {
+            dataIniciParsed = java.time.LocalDate.parse(dataInici, formatter);
+            dataTornadaParsed = java.time.LocalDate.parse(dataPrevista, formatter);
+        } catch (java.time.format.DateTimeParseException e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "El format de les dates ha de ser dd/MM/yyyy (ex: 05/11/2026).",
+                    "Format de data incorrecte",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!dataTornadaParsed.isAfter(dataIniciParsed)) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "La data de tornada ha de ser posterior a la data d'inici.",
+                    "Error en les dates",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // 4. Comprovar que hi hagi estoc disponible per a la plataforma triada
+        int estocDisponible = 0;
+        switch (plataforma) {
+            case "PS5":
+                estocDisponible = joc.getUnitatsPS5();
+                break;
+            case "Xbox":
+                estocDisponible = joc.getUnitatsXbox();
+                break;
+            case "PC":
+                estocDisponible = joc.getUnitatsPC();
+                break;
+            case "Switch 2":
+                estocDisponible = joc.getUnitatsSwitch2();
+                break;
+        }
+
+        if (estocDisponible <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "No hi ha estoc disponible per a la plataforma seleccionada (" + plataforma + ").",
+                    "Sense estoc",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // 5. Restar 1 unitat d'estoc segons la plataforma triada
+        switch (plataforma) {
+            case "PS5":
+                joc.setUnitatsPS5(joc.getUnitatsPS5() - 1);
+                break;
+            case "Xbox":
+                joc.setUnitatsXbox(joc.getUnitatsXbox() - 1);
+                break;
+            case "PC":
+                joc.setUnitatsPC(joc.getUnitatsPC() - 1);
+                break;
+            case "Switch 2":
+                joc.setUnitatsSwitch2(joc.getUnitatsSwitch2() - 1);
+                break;
+        }
+
+        // 6. Generar el número de registre automàtic i instanciar el nou lloguer
+        int nouNumRegistre = com.app.model.GestorLloguers.getInstance().getLloguers().size() + 1;
+
         com.app.model.Lloguer nouLloguer = new com.app.model.Lloguer(
-        numUsuari, joc, usuari, plataforma, dInici, dTornada
+                nouNumRegistre,
+                joc,
+                usuari,
+                plataforma,
+                dataInici,
+                dataPrevista,
+                false
+                
         );
+
+        // 7. Afegir el lloguer al gestor centralitzat
         com.app.model.GestorLloguers.getInstance().afegirLloguer(nouLloguer);
-        
-        //Actualitzar taula
-        if(getParent() instanceof FinestraPrincipal){
+
+        // 8. Mostrar missatge de confirmació
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Lloguer registrat correctament!",
+                "Èxit",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        // 9. Refrescar la taula de la finestra principal
+        if (getParent() instanceof FinestraPrincipal) {
             ((FinestraPrincipal) getParent()).actualitzarTaula();
         }
-        javax.swing.JOptionPane.showMessageDialog(this, "LLoguer registrat correctament!!");
+
+        // 10. Tancar la finestra actual
         this.dispose();
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
@@ -449,6 +546,57 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
     private void jComboBoxJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxJocActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxJocActionPerformed
+
+    private void jButtonSelectUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectUsuariActionPerformed
+        com.app.model.Usuari usuari = (com.app.model.Usuari) jComboBoxUsuari.getSelectedItem();
+
+        if (usuari == null) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Selecciona un usuari vàlid de la llista.",
+                    "Atenció",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Mostra un missatge de confirmació o feedback visual
+        System.out.println(">>> Usuari seleccionat: " + usuari.toString());
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Usuari seleccionat: " + usuari.toString(),
+                "Info",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void jButtonSelectJocActionPerformed() {
+        
+    }//GEN-LAST:event_jButtonSelectUsuariActionPerformed
+
+    private void jButtonSelectJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectJocActionPerformed
+        // TODO add your handling code here:
+        com.app.model.Videojoc joc = (com.app.model.Videojoc) jComboBoxJoc.getSelectedItem();
+
+        if (joc == null) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Selecciona un joc vàlid de la llista.",
+                    "Atenció",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // 1. Actualitzar el gènere
+        jLabel2.setText("Gènere: " + joc.getGenere());
+
+        // 2. Actualitzar les etiquetes d'unitats disponibles
+        jLabel4.setText("PS5: " + joc.getUnitatsPS5());
+        jLabel5.setText("XBOX: " + joc.getUnitatsXbox());
+        jLabel6.setText("PC: " + joc.getUnitatsPC());
+        jLabel7.setText("SWITCH 2: " + joc.getUnitatsSwitch2());
+
+        // 3. Activar o desactivar opcions segons si hi ha estoc (> 0)
+        jRadioButtonPS5.setEnabled(joc.getUnitatsPS5() > 0);
+        jRadioButtonXBOX.setEnabled(joc.getUnitatsXbox() > 0);
+        jRadioButtonPC.setEnabled(joc.getUnitatsPC() > 0);
+        jRadioButtonSwitch2.setEnabled(joc.getUnitatsSwitch2() > 0);
+    }//GEN-LAST:event_jButtonSelectJocActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupPlataforma;

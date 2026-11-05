@@ -27,19 +27,71 @@ public class FinestraPrincipal extends javax.swing.JFrame {
     }
     //Metode per aplicar el color de si hi ha o no stock
     public void actualitzarTaula() {
-    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTableLloguers.getModel();
-    model.setRowCount(0); // Netejar la taula
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTableLloguers.getModel();
+        model.setRowCount(0);
 
-    for (com.app.model.Lloguer l : com.app.model.GestorLloguers.getInstance().getLloguers()) {
-        model.addRow(new Object[]{
-            String.format("%02d", l.getNumRegistre()),
-            l.getUsuari().toString(),
-            l.getVideojoc().getTitol(),
-            l.getPlataforma(),
-            l.getDataInici(),
-            l.getDataPrevista()
-        });
+        for (com.app.model.Lloguer l : com.app.model.GestorLloguers.getInstance().getLloguers()) {
+            model.addRow(new Object[]{
+                String.format("%02d", l.getNumRegistre()),
+                l.getVideojoc().getTitol(), // Columna 1: Títol del joc
+                l.getUsuari().toString(), // Columna 2: Usuari
+                l.getPlataforma(), // Columna 3: Plataforma
+                l.getDataInici(), // Columna 4: Dat/a d'inici
+                l.getDataPrevista(), // Columna 5: Data de tornada
+                l.getVideojoc().getGenere() // Columna 6: Gènere
+            });
+        }
+
+        // Actualitzar el comptador inferior
+        int total = model.getRowCount();
+        if (bundle != null && bundle.containsKey("label.total_lloguers")) {
+            jLabelTotalLloguers.setText(bundle.getString("label.total_lloguers") + ": " + total);
+        } else {
+            jLabelTotalLloguers.setText("Total de lloguers: " + total);
+        }
+
+        // Aplicar els colors a les files després de carregar les dades
+        aplicarRenderizadorColores();
     }
+
+// Mètode auxiliar que pinta el fons de cada fila
+    private void aplicarRenderizadorColores() {
+        jTableLloguers.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
+            @Override
+            public java.awt.Component getTableCellRendererComponent(
+                    javax.swing.JTable table, Object value,
+                    boolean isSelected, boolean hasFocus, int row, int column) {
+
+                java.awt.Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                // Mantenir el color blau si la fila està seleccionada amb el ratolí
+                if (isSelected) {
+                    c.setBackground(table.getSelectionBackground());
+                    c.setForeground(table.getSelectionForeground());
+                    return c;
+                }
+
+                try {
+                    // Obtenir l'objecte lloguer corresponent a la fila actual
+                    com.app.model.Lloguer lloguer = com.app.model.GestorLloguers.getInstance().getLloguers().get(row);
+
+                    if (lloguer.isRetornat()) {
+                        // VERD: Lloguer retornat (operació finalitzada / OK)
+                        c.setBackground(new java.awt.Color(210, 245, 210));
+                    } else {
+                        // ROSA / VERMELL: Pendent de retorn (joc actualment llogat)
+                        c.setBackground(new java.awt.Color(255, 205, 205));
+                    }
+                    c.setForeground(java.awt.Color.BLACK);
+
+                } catch (Exception e) {
+                    c.setBackground(java.awt.Color.WHITE);
+                    c.setForeground(java.awt.Color.BLACK);
+                }
+
+                return c;
+            }
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.

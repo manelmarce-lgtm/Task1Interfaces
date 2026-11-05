@@ -121,6 +121,17 @@ public class FormCrearJoc extends javax.swing.JDialog {
 
         jLabelUniSw2.setText("Unitats");
 
+        jSpinnerPS5.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jSpinnerPS5.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        jSpinnerXB.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jSpinnerXB.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        jSpinnerPC.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jSpinnerPC.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        jSpinnerSw2.setMinimumSize(new java.awt.Dimension(0, 0));
+
         jButtonConf.setBackground(new java.awt.Color(51, 255, 102));
         jButtonConf.setText("Confirmar");
         jButtonConf.addActionListener(this::jButtonConfActionPerformed);
@@ -246,27 +257,34 @@ public class FormCrearJoc extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfActionPerformed
-        // TODO add your handling code here:
         String nom = jTextFieldNom.getText().trim();
-        String genere = jComboBoxGen.getSelectedItem() != null ? jComboBoxGen.getSelectedItem().toString():"";
-        
-        //Validar nom
-        if(nom.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Nom OBLIGATORI","ERROR", JOptionPane.ERROR_MESSAGE);
-            return;   
+        String genere = jComboBoxGen.getSelectedItem() != null ? jComboBoxGen.getSelectedItem().toString() : "";
+
+        // 1. Validar que el nom no estigui buit
+        if (nom.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Nom OBLIGATORI", "ERROR", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        //Validar plataforma
-        boolean triat = jCheckBoxPC.isSelected()||jCheckBoxSw2.isSelected()||jCheckBoxXB.isSelected()||jCheckBoxPS5.isSelected();
-        
-        if(!triat){
-            JOptionPane.showMessageDialog(this, "Sel·lecciona una Plataforma", "ERROR",JOptionPane.ERROR_MESSAGE);
-            return;    
+
+        // 2. Validar que s'hagi marcat almenys una plataforma
+        boolean triat = jCheckBoxPC.isSelected() || jCheckBoxSw2.isSelected() || jCheckBoxXB.isSelected() || jCheckBoxPS5.isSelected();
+
+        if (!triat) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Sel·lecciona una Plataforma", "ERROR", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        
-        Videojoc nouJoc = new Videojoc(nom,genere);
-        GestorLloguers.getInstance().afegirJoc(nouJoc);
-        
-        JOptionPane.showMessageDialog(this, "Videojoc Afegit","ÈXIT",JOptionPane.INFORMATION_MESSAGE);
+
+        // 3. Assignar les unitats NOMÉS si la casella de la plataforma està seleccionada (si no, posa 0)
+        int ps5 = jCheckBoxPS5.isSelected() ? (Integer) jSpinnerPS5.getValue() : 0;
+        int xbox = jCheckBoxXB.isSelected() ? (Integer) jSpinnerXB.getValue() : 0;
+        int pc = jCheckBoxPC.isSelected() ? (Integer) jSpinnerPC.getValue() : 0;
+        int switch2 = jCheckBoxSw2.isSelected() ? (Integer) jSpinnerSw2.getValue() : 0;
+
+        // 4. Instanciar el videojoc amb les unitats filtrades per plataforma
+        com.app.model.Videojoc nouJoc = new com.app.model.Videojoc(nom, genere, ps5, xbox, pc, switch2);
+        com.app.model.GestorLloguers.getInstance().afegirJoc(nouJoc);
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Videojoc Afegit", "ÈXIT", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
     }//GEN-LAST:event_jButtonConfActionPerformed
     

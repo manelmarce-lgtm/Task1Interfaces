@@ -73,6 +73,8 @@ public class FinestraPrincipal extends javax.swing.JFrame {
         jMenuJoc = new javax.swing.JMenu();
         jMenuCrearJoc = new javax.swing.JMenuItem();
         jMenuBorrarJoc = new javax.swing.JMenuItem();
+        jMenuOpcions = new javax.swing.JMenu();
+        jMenuCanviarIdioma = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -155,6 +157,14 @@ public class FinestraPrincipal extends javax.swing.JFrame {
 
         jMenuBar.add(jMenuJoc);
 
+        jMenuOpcions.setText("Opcions");
+
+        jMenuCanviarIdioma.setText("Canviar Idioma");
+        jMenuCanviarIdioma.addActionListener(this::jMenuCanviarIdiomaActionPerformed);
+        jMenuOpcions.add(jMenuCanviarIdioma);
+
+        jMenuBar.add(jMenuOpcions);
+
         setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -230,6 +240,11 @@ public class FinestraPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuBorrarJocActionPerformed
 
+    private void jMenuCanviarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCanviarIdiomaActionPerformed
+        // TODO add your handling code here:
+        new FormCanviarIdioma(this,true).setVisible(true);
+    }//GEN-LAST:event_jMenuCanviarIdiomaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,10 +264,12 @@ public class FinestraPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuBorrarJoc;
     private javax.swing.JMenuItem jMenuBorrarUsuari;
+    private javax.swing.JMenuItem jMenuCanviarIdioma;
     private javax.swing.JMenuItem jMenuCrearJoc;
     private javax.swing.JMenuItem jMenuCrearUsuari;
     private javax.swing.JMenu jMenuJoc;
     private javax.swing.JMenu jMenuLLoguer;
+    private javax.swing.JMenu jMenuOpcions;
     private javax.swing.JMenuItem jMenuRegistrar;
     private javax.swing.JMenuItem jMenuTornar;
     private javax.swing.JMenu jMenuUsuari;

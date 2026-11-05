@@ -26,11 +26,32 @@ public class FormCrearUsuari extends javax.swing.JDialog {
     public FormCrearUsuari(java.awt.Frame parent, boolean modal) {
     super(parent, modal);
     initComponents();
+    aplicarIdioma();
  
     java.time.format.DateTimeFormatter format = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
     jTextFieldDataR.setText(java.time.LocalDate.now().format(format));
 }
-    
+private void aplicarIdioma() {
+    java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("com.app.resources.Bundle", java.util.Locale.getDefault());
+
+    // 1. Títol de la finestra i capçalera
+    if (bundle.containsKey("usuari.titol")) {
+        setTitle(bundle.getString("usuari.titol"));
+        jLabelTitol.setText(bundle.getString("usuari.titol"));
+    }
+
+    // 2. Etiquetes dels camps de text
+    if (bundle.containsKey("usuari.nom")) jLabelNom.setText(bundle.getString("usuari.nom"));
+    if (bundle.containsKey("usuari.cognom1")) jLabelCognom1.setText(bundle.getString("usuari.cognom1"));
+    if (bundle.containsKey("usuari.cognom2")) jLabelCognom2.setText(bundle.getString("usuari.cognom2"));
+    if (bundle.containsKey("usuari.dni")) jLabelDNI.setText(bundle.getString("usuari.dni"));
+    if (bundle.containsKey("usuari.tel")) jLabelTel.setText(bundle.getString("usuari.tel"));
+    if (bundle.containsKey("usuari.data_registre")) jLabelDataR.setText(bundle.getString("usuari.data_registre"));
+
+    // 3. Botons d'acció
+    if (bundle.containsKey("boto.confirmar")) jButtonConf.setText(bundle.getString("boto.confirmar"));
+    if (bundle.containsKey("boto.cancelar")) jButtonCanc.setText(bundle.getString("boto.cancelar"));
+}    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -50,7 +71,7 @@ public class FormCrearUsuari extends javax.swing.JDialog {
         jButtonConf = new javax.swing.JButton();
         jButtonCanc = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabelTitol.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelTitol.setForeground(new java.awt.Color(102, 153, 255));

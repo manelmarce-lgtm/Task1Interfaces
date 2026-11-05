@@ -27,8 +27,64 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         carregarDadesInicials();
+        aplicarIdioma();
     }
-    
+    private void aplicarIdioma() {
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("com.app.resources.Bundle", java.util.Locale.getDefault());
+
+        // 1. Títol de la finestra i capçalera del panell
+        if (bundle.containsKey("registrar.titol")) {
+            setTitle(bundle.getString("registrar.titol"));
+        }
+        if (bundle.containsKey("registrar.dades")) {
+            jLabelDadesLloguer.setText(bundle.getString("registrar.dades"));
+        }
+
+        // 2. Etiquetes del formulari principal
+        if (bundle.containsKey("registrar.num_usuari")) {
+            jLabelNumUsuari.setText(bundle.getString("registrar.num_usuari"));
+        }
+        if (bundle.containsKey("registrar.usuari")) {
+            jLabelUsuari.setText(bundle.getString("registrar.usuari"));
+        }
+        if (bundle.containsKey("registrar.joc_elegit")) {
+            jLabelJoc.setText(bundle.getString("registrar.joc_elegit"));
+        }
+        if (bundle.containsKey("registrar.data_inici")) {
+            jLabelDataInici.setText(bundle.getString("registrar.data_inici"));
+        }
+        if (bundle.containsKey("registrar.data_tornada")) {
+            jLabelDataT.setText(bundle.getString("registrar.data_tornada"));
+        }
+
+        // 3. Panell de Plataforma i seleccions
+        if (bundle.containsKey("registrar.plataforma")) {
+            jLabelPlataforma.setText(bundle.getString("registrar.plataforma"));
+        }
+        if (bundle.containsKey("boto.seleccionar")) {
+            jButtonSelectJoc.setText(bundle.getString("boto.seleccionar"));
+            jButtonSelectUsuari.setText(bundle.getString("boto.seleccionar"));
+        }
+
+        // 4. Panell d'Informació del Joc (jPanelInfoJoc)
+        if (bundle.containsKey("registrar.info_joc")) {
+            jLabel1.setText(bundle.getString("registrar.info_joc"));
+        }
+        if (bundle.containsKey("registrar.genere")) {
+            jLabel2.setText(bundle.getString("registrar.genere"));
+        }
+        if (bundle.containsKey("registrar.unitats_disponibles")) {
+            jLabel3.setText(bundle.getString("registrar.unitats_disponibles"));
+        }
+
+        // 5. Botons d'acció inferiors
+        if (bundle.containsKey("boto.confirmar")) {
+            jButtonConfirmar.setText(bundle.getString("boto.confirmar"));
+        }
+        if (bundle.containsKey("boto.cancelar")) {
+            jButtonCancelar.setText(bundle.getString("boto.cancelar"));
+        }
+    }
     private void carregarDadesInicials(){
         int numRegistre = com.app.model.GestorLloguers.getInstance().getLloguers().size() +1;
         jTextPaneNumUsuari.setText(String.format("%02d", numRegistre)); //NumRegistre automàtic

@@ -21,8 +21,45 @@ public class FormCrearJoc extends javax.swing.JDialog {
     public FormCrearJoc(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        aplicarIdioma();
+    }
+    private void aplicarIdioma() {
+    // Obtenir el bundle segons el Locale actual
+    java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("com.app.resources.Bundle", java.util.Locale.getDefault());
+
+    // 1. Títol de la finestra i label superior
+    if (bundle.containsKey("joc.titol")) {
+        setTitle(bundle.getString("joc.titol"));
+        jLabelTitle.setText(bundle.getString("joc.titol")); // Label blau superior "Crear Joc"
     }
 
+    // 2. Etiquetes principals
+    if (bundle.containsKey("joc.nom")) {
+        jLabelNom.setText(bundle.getString("joc.nom"));
+    }
+    if (bundle.containsKey("joc.genere")) {
+        jLabelGen.setText(bundle.getString("joc.genere"));
+    }
+    if (bundle.containsKey("joc.plataformes_panel")) {
+        jLabelPlataforma.setText(bundle.getString("joc.plataformes_panel"));
+    }
+
+    // 3. Etiquetes de "Unitats" (canvia els noms dels teus JLabels)
+    if (bundle.containsKey("joc.unitats")) {
+        jLabelUniPS5.setText(bundle.getString("joc.unitats"));
+        jLabelUniXB.setText(bundle.getString("joc.unitats"));
+        jLabelUniPC.setText(bundle.getString("joc.unitats"));
+        jLabelUniSw2.setText(bundle.getString("joc.unitats"));
+    }
+
+    // 4. Botons inferiors
+    if (bundle.containsKey("boto.confirmar")) {
+        jButtonConf.setText(bundle.getString("boto.confirmar"));
+    }
+    if (bundle.containsKey("boto.cancelar")) {
+        jButtonCan.setText(bundle.getString("boto.cancelar"));
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

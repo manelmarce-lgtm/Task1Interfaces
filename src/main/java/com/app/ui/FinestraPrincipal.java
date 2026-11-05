@@ -29,23 +29,20 @@ public class FinestraPrincipal extends javax.swing.JFrame {
         }
     }
     //Metode per aplicar el color de si hi ha o no stock
-    public void actualitzarTaula(){
-        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTableFinPrincipal.getModel();
-        model.setRowCount(0);
-        
-        //AFEGIR cada lloger
-        for(com.app.model.Lloguer ll: com.app.model.GestorLloguers.getInstance().getLloguers()){
-            model.addRow(new Object[]{
-            ll.getNumRegistre(),
-            ll.getVideojoc().getTitol(),
-            ll.getUsuari().getNom(),
-            ll.getPlataforma(),
-            ll.getDataInici(),
-            ll.getDataPrevista(),
-            ll.getVideojoc().getGenere()
-          });
-        }
-        jLabelTotalLloguers.setText("Total de lloguers: " + model.getRowCount());
+    public void actualitzarTaula() {
+    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTableLloguers.getModel();
+    model.setRowCount(0); // Netejar la taula
+
+    for (com.app.model.Lloguer l : com.app.model.GestorLloguers.getInstance().getLloguers()) {
+        model.addRow(new Object[]{
+            String.format("%02d", l.getNumRegistre()),
+            l.getUsuari().toString(),
+            l.getVideojoc().getTitol(),
+            l.getPlataforma(),
+            l.getDataInici(),
+            l.getDataPrevista()
+        });
+    }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,7 +61,7 @@ public class FinestraPrincipal extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jScrollPaneFinPrincipal = new javax.swing.JScrollPane();
-        jTableFinPrincipal = new javax.swing.JTable();
+        jTableLloguers = new javax.swing.JTable();
         jLabelTotalLloguers = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuLLoguer = new javax.swing.JMenu();
@@ -102,7 +99,7 @@ public class FinestraPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTableFinPrincipal.setModel(new javax.swing.table.DefaultTableModel(
+        jTableLloguers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -118,7 +115,7 @@ public class FinestraPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPaneFinPrincipal.setViewportView(jTableFinPrincipal);
+        jScrollPaneFinPrincipal.setViewportView(jTableLloguers);
 
         jLabelTotalLloguers.setText("Total de lloguers: 0");
 
@@ -260,6 +257,6 @@ public class FinestraPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuUsuari;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPaneFinPrincipal;
-    private javax.swing.JTable jTableFinPrincipal;
+    private javax.swing.JTable jTableLloguers;
     // End of variables declaration//GEN-END:variables
 }

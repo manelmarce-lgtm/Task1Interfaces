@@ -10,11 +10,20 @@ package com.app.model;
  */
 public class Lloguer {
     private int numRegistre;
-    private Videojoc joc;
+  private Videojoc joc;
     private Usuari usuari;
-    private String Plataforma;
-    private String DataInici;
-    private String DataPrevista;
+    private String plataforma;
+    private String dataInici;
+    private String dataPrevista;
+    
+    public Lloguer(int numRegistre, Videojoc joc, Usuari usuari, String plataforma, String dataInici, String dataPrevista) {
+        this.numRegistre = numRegistre;
+        this.joc = joc;
+        this.usuari = usuari;
+        this.plataforma = plataforma;
+        this.dataInici = dataInici;
+        this.dataPrevista = dataPrevista;
+    }
 
     public int getNumRegistre() {
         return numRegistre;
@@ -29,16 +38,16 @@ public class Lloguer {
     }
 
     public String getPlataforma() {
-        return Plataforma;
+        return plataforma;
     }
 
     public String getDataInici() {
-        return DataInici;
+        return dataInici;
     }
 
     public String getDataPrevista() {
-        return DataPrevista;
+        return dataPrevista;
     }
    
     
-}
+}  

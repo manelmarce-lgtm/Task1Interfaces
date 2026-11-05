@@ -4,6 +4,14 @@
  */
 package com.app.ui;
 
+import javax.swing.JTextField;
+import com.app.model.GestorLloguers;
+import com.app.model.Lloguer;
+import com.app.model.Usuari;
+import com.app.model.Videojoc;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 /**
  *
  * @author manue
@@ -18,8 +26,28 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
     public FormRegistrarLloguer(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        carregarDadesInicials();
     }
-
+    
+    private  carregarDadesInicials(){
+        int numRegistre = com.app.model.GestorLloguers.getInstance().getLloguers().size() +1;
+        jTextPaneNumUsuari.setText(String.format("%02d", numRegistre)); //NumRegistre automàtic
+        //Dates
+        java.time.format.DateTimeFormatter format = java.time.format.DateTimeFormatter.offPattern("dd/MM/yyyy");
+        jTextFieldDataInici.setText(java.time.LocalDate.now().format(format));
+        jTextFieldDataT.setText(java.time.LocalDate.now().plusDays(3).format(format));
+        
+        //Dades als desplegables
+        jComboBoxUsuari.removeAllItems();
+        for(com.app.model.Usuari u: com.app.model.GestorLloguers.getInstance().getUsuaris()){
+            jComboBoxUsuari.addItem(u);
+        }
+        jComboBoxJoc.removeAllItems();
+        for(com.app.model.Videojoc j : com.app.model.GestorLloguers.getInstance().getJocs()) {
+        jComboBoxJoc.addItem(j);
+    }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -321,10 +349,39 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         // TODO add your handling code here:
+        com.app.model.Usuari usuari = (com.app.model.Usuari) jComboBoxUsuari.getSelectedItem();
+        com.app.model.Videojoc joc = (com.app.model.Videojoc) jComboBoxJoc.getSelectedItem();
+        
+        //Obtenir sa plataforma
+        String plataforma = "PC";
+        if(jRadioButtonPS5.isSelected()) plataforma = "PS5";
+        else if (jRadioButtonXBOX.isSelected())plataforma = "Xbox";
+        else if (jRadioButtonSwitch2.isSelected()) plataforma = "Switch 2";
+        
+        if(usuari == null || joc == null){
+            javax.swing.JOptionPane.showMessageDialog(this, "Tria un usuari i un joc vàlid");
+            return;
+        }
+        
+        int numUsuari = Integer.parseInt(jTextPaneNumUsuari.getText());
+        String dInici = jTextFieldDataInici.getText();
+        String dTornada = jTextFieldDataT.getText();
+        
+        // Creació i afegir es lloguer
+        com.app.model.Lloguer nouLloguer = new com.app.model.Lloguer(numUsuari,joc,usuari,plataforma,dInici,dTornada);
+        com.app.model.GestorLloguers.getInstance().afegirLloguer(nouLloguer);
+        
+        //Actualitzar taula
+        if(getParent() instanceof FinestraPrincipal){
+            ((FinestraPrincipal) getParent()).actualitzarTaula();
+        }
+        javax.swing.JOptionPane.showMessageDialog(this, "LLoguer registrat correctament!!");
+        this.dispose();
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jComboBoxJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxJocActionPerformed

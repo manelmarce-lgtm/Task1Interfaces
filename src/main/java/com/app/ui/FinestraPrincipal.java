@@ -242,9 +242,31 @@ public class FinestraPrincipal extends javax.swing.JFrame {
 
     private void jMenuCanviarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCanviarIdiomaActionPerformed
         // TODO add your handling code here:
-        new FormCanviarIdioma(this,true).setVisible(true);
+        
+        FormCanviarIdioma form = new FormCanviarIdioma(this,true);
+        form.setVisible(true);
+        aplicarIdioma();
     }//GEN-LAST:event_jMenuCanviarIdiomaActionPerformed
-
+    private void aplicarIdioma(){
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Bundle", java.util.Locale.getDefault());
+    
+        jMenuLLoguer.setText(bundle.getString("menu.lloguers"));
+        jMenuRegistrar.setText(bundle.getString("menu.registrar_lloguer"));
+        jMenuTornar.setText(bundle.getString("menu.tornar_lloguer"));
+    
+        jMenuUsuari.setText(bundle.getString("menu.usuaris"));
+        jMenuCrearUsuari.setText(bundle.getString("menu.crear_usuari"));
+        jMenuBorrarUsuari.setText(bundle.getString("menu.borrar_usuari"));
+    
+        jMenuJoc.setText(bundle.getString("menu.jocs"));
+        jMenuCrearJoc.setText(bundle.getString("menu.crear_joc"));
+    
+        jMenuOpcions.setText(bundle.getString("menu.opcions"));
+        jMenuCanviarIdioma.setText(bundle.getString("menu.canviar_idioma"));
+    
+    
+    
+    }
     /**
      * @param args the command line arguments
      */

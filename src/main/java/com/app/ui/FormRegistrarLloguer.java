@@ -183,9 +183,6 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
         jPanelDadesLLoguer.setLayout(jPanelDadesLLoguerLayout);
         jPanelDadesLLoguerLayout.setHorizontalGroup(
             jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
-                .addComponent(jLabelDadesLloguer, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadesLLoguerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -211,6 +208,9 @@ public class FormRegistrarLloguer extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSelectJoc, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
                 .addGap(23, 23, 23))
+            .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
+                .addComponent(jLabelDadesLloguer, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanelDadesLLoguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelDadesLLoguerLayout.createSequentialGroup()
                     .addContainerGap()

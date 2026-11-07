@@ -52,6 +52,42 @@ private void aplicarIdioma() {
     if (bundle.containsKey("boto.confirmar")) jButtonConf.setText(bundle.getString("boto.confirmar"));
     if (bundle.containsKey("boto.cancelar")) jButtonCanc.setText(bundle.getString("boto.cancelar"));
 }    
+public static String lletraMayus(String text){
+    if(text == null || text.trim().isEmpty()){
+        return "";
+    }
+    String[] paraules = text.trim().split("\\s+");
+    StringBuilder resultat = new StringBuilder();
+    for(String p : paraules){
+        if(!p.isEmpty()){
+            resultat.append(Character.toUpperCase(p.charAt(0)))
+                   .append(p.substring(1).toLowerCase())
+                   .append(" ");
+        }
+    }
+    return resultat.toString().trim();
+}
+public static boolean esNomValid(String text){
+    if(text == null) return false;
+    return text.trim().matches("^[a-zA-ZàáèéíòóúçÀÁÈÉÍÒÓÚñÑ\\\\s']{2,}$"); 
+}
+
+public static boolean esTelefonValid(String telefon){
+    if( telefon == null) return false;
+    return telefon.trim().matches("^\\\\d{9}$");
+}
+
+public static boolean esDniValid(String dni){
+    if(dni == null) return false;
+    dni = dni.trim().toUpperCase();
+    if(!dni.matches("^\\\\d{8}[A-Z]$")){
+        return false;
+    }
+    String lletres = "TRWAGMYFPDXBNJZSQVHLCKE";
+    int numero = Integer.parseInt(dni.substring(0,8));
+    char lletra = lletres.charAt(numero % 23);
+    return dni.charAt(8) == lletra;
+}
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -195,9 +231,13 @@ private void aplicarIdioma() {
 
     private void jButtonConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfActionPerformed
         // TODO add your handling code here:
-        String nom = jTextFieldNom.getText().trim();
-        String cog1 = jTextFieldCog1.getText().trim();
-        String cog2 = jTextFieldCog2.getText().trim();
+        String nom = lletraMayus(jTextFieldNom.getText().trim());
+        String cog1 = lletraMayus(jTextFieldCog1.getText().trim());
+        String cog2 = lletraMayus(jTextFieldCog2.getText().trim());
+        
+        jTextFieldNom.setText(nom);
+        jTextFieldCog1.setText(cog1);
+        jTextFieldCog2.setText(cog2);
         String dni = jTextFieldDNI.getText().trim();
         String tel = jTextFieldTel.getText().trim();
         
@@ -206,10 +246,33 @@ private void aplicarIdioma() {
             javax.swing.JOptionPane.showMessageDialog(this, "ERROR De Validació, ompleix els camps", "ERROR", javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String cognoms = (cog1 + " " + cog2).trim();
         
-        com.app.model.Usuari nouUsuari = new com.app.model.Usuari(nom, cognoms);
-        com.app.model.GestorLloguers.getInstance().afegirUsuari(nouUsuari);
+        if(!esNomValid(nom)){
+            JOptionPane.showMessageDialog(this,"Posa bé el nom","ERROR",JOptionPane.ERROR_MESSAGE);
+            jTextFieldNom.requestFocus(); //duim l'usuari a escriure directament el nom fora haver de clicar-hi
+            return;
+        }
+        String cognoms = (cog1 + " " + cog2).trim();   
+        if(!esNomValid(cognoms)){
+            JOptionPane.showMessageDialog(this, "Posa bé el cognom","ERROR",JOptionPane.ERROR_MESSAGE);
+            jTextFieldCog1.requestFocus(); 
+            return;
+        }
+        
+        if(!esTelefonValid(tel)){
+            JOptionPane.showMessageDialog(this, "Posa bé el teléfon","ERROR",JOptionPane.ERROR_MESSAGE);
+            jTextFieldTel.requestFocus(); 
+            return;
+        }
+        
+        if(!esDniValid(dni)){
+           JOptionPane.showMessageDialog(this, "Posa bé el DNI","ERROR",JOptionPane.ERROR_MESSAGE);
+           jTextFieldDNI.requestFocus(); 
+           return;
+        }
+             
+        Usuari nouUsuari = new Usuari(nom, cognoms);
+        GestorLloguers.getInstance().afegirUsuari(nouUsuari);
         javax.swing.JOptionPane.showMessageDialog(this, "Usuari registrat correctament", "Èxit", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
         
